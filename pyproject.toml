@@ -1,0 +1,16 @@
+[project]
+name = "indors-navigation-test-task"
+version = "0.1.0"
+description = "Test task service"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "channels>=4.3.2",
+    "daphne>=4.2.1",
+    "django>=6.0.5",
+    "django-cors-headers>=4.9.0",
+    "django-environ>=0.13.0",
+    "djangorestframework>=3.17.1",
+    "djangorestframework-simplejwt>=5.5.1",
+    "psycopg[binary]>=3.3.4",
+]
