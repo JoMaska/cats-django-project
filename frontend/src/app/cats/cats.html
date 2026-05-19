@@ -1,0 +1,79 @@
+<div class="cats-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <mat-icon>pets</mat-icon>
+        Мои коты
+      </mat-card-title>
+      <button 
+        mat-raised-button 
+        color="primary" 
+        (click)="openForm()"
+        class="add-button">
+        <mat-icon>add</mat-icon>
+        Добавить кота
+      </button>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <table mat-table [dataSource]="cats" class="cats-table">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Имя</th>
+          <td mat-cell *matCellDef="let cat">
+            <mat-icon class="cat-icon">pets</mat-icon>
+            {{ cat.name }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+          <th mat-header-cell *matHeaderCellDef>Возраст</th>
+          <td mat-cell *matCellDef="let cat">
+            {{ cat.age }} {{ cat.age | plural:'год' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="breed">
+          <th mat-header-cell *matHeaderCellDef>Порода</th>
+          <td mat-cell *matCellDef="let cat">{{ cat.breed }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="hairiness">
+          <th mat-header-cell *matHeaderCellDef>Волосатость</th>
+          <td mat-cell *matCellDef="let cat">
+            <span class="hairiness-badge">
+              <span *ngIf="cat.hairiness === 'bald'">🪒 Лысый</span>
+              <span *ngIf="cat.hairiness === 'fluffy'">🐑 Пушистый</span>
+              <span *ngIf="cat.hairiness === 'medium'">🐕 Средний</span>
+            </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Действия</th>
+          <td mat-cell *matCellDef="let cat">
+            <button mat-icon-button color="primary" (click)="openForm(cat)" matTooltip="Редактировать">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteCat(cat.id!)" matTooltip="Удалить">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        
+        <tr *ngIf="cats.length === 0">
+          <td colspan="5" class="empty-state">
+            <mat-icon>sentiment_dissatisfied</mat-icon>
+            <p>У вас пока нет котов</p>
+            <button mat-stroked-button color="primary" (click)="openForm()">
+              <mat-icon>add</mat-icon>
+              Создать первого кота
+            </button>
+          </td>
+        </tr>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

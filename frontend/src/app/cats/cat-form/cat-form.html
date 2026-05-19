@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>
+  <mat-icon>{{ cat.id ? 'edit' : 'add_circle' }}</mat-icon>
+  {{ cat.id ? 'Редактировать кота' : 'Новый кот' }}
+</h2>
+
+<mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Имя 🐱</mat-label>
+    <input matInput [(ngModel)]="cat.name" placeholder="Например: Барсик">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Возраст 🎂</mat-label>
+    <input matInput type="number" [(ngModel)]="cat.age" placeholder="1">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Порода 🐈</mat-label>
+    <input matInput [(ngModel)]="cat.breed" placeholder="Например: Сиамский">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Волосатость 🧶</mat-label>
+    <mat-select [(ngModel)]="cat.hairiness">
+      <mat-option value="bald">🪒 Лысый</mat-option>
+      <mat-option value="fluffy">🐑 Пушистый</mat-option>
+      <mat-option value="medium">🐕 Средний</mat-option>
+    </mat-select>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="cancel()">Отмена</button>
+  <button mat-raised-button color="primary" (click)="save()">
+    <mat-icon>save</mat-icon>
+    Сохранить
+  </button>
+</mat-dialog-actions>

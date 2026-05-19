@@ -1,0 +1,60 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="logo">
+    <mat-icon>pets</mat-icon>
+    <span class="logo-text">Cat Breeder</span>
+  </div>
+  
+  <span class="spacer"></span>
+  
+  <div class="nav-links" *ngIf="isLoggedIn">
+    <a mat-button routerLink="/cats" routerLinkActive="active">
+      <mat-icon>pets</mat-icon>
+      <span>Мои коты</span>
+    </a>
+    <a mat-button routerLink="/chat" routerLinkActive="active">
+      <mat-icon>chat</mat-icon>
+      <span>Чат</span>
+    </a>
+    <button mat-button (click)="logout()" class="logout-btn">
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Выйти</span>
+    </button>
+  </div>
+  
+  <div class="nav-links" *ngIf="!isLoggedIn">
+    <a mat-button routerLink="/login" routerLinkActive="active">
+      <mat-icon>login</mat-icon>
+      <span>Войти</span>
+    </a>
+    <a mat-button routerLink="/register" routerLinkActive="active" class="register-btn">
+      <mat-icon>person_add</mat-icon>
+      <span>Регистрация</span>
+    </a>
+  </div>
+  
+  <button mat-icon-button class="mobile-menu-btn" (click)="toggleMobileMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+
+<div class="mobile-menu" [class.open]="mobileMenuOpen" *ngIf="isLoggedIn">
+  <a mat-button routerLink="/cats" (click)="closeMobileMenu()">
+    <mat-icon>pets</mat-icon>
+    Мои коты
+  </a>
+  <a mat-button routerLink="/chat" (click)="closeMobileMenu()">
+    <mat-icon>chat</mat-icon>
+    Чат
+  </a>
+  <button mat-button (click)="logout(); closeMobileMenu()">
+    <mat-icon>exit_to_app</mat-icon>
+    Выйти
+  </button>
+</div>
+
+<main class="main-content">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</main>

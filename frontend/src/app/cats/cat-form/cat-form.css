@@ -1,0 +1,13 @@
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+h2 mat-icon {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px;
+}

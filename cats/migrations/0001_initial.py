@@ -6,7 +6,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
@@ -15,15 +14,48 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Cat',
+            name="Cat",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100, verbose_name='Имя')),
-                ('age', models.IntegerField(verbose_name='Возраст')),
-                ('breed', models.CharField(max_length=100, verbose_name='Порода')),
-                ('hairiness', models.CharField(choices=[('bald', 'Лысый'), ('medium', 'Средний'), ('fluffy', 'Пушистый')], default='medium', max_length=50, verbose_name='Волосатость')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата добавления')),
-                ('owner', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='cats', to=settings.AUTH_USER_MODEL, verbose_name='Заводчик')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100, verbose_name="Имя")),
+                ("age", models.IntegerField(verbose_name="Возраст")),
+                ("breed", models.CharField(max_length=100, verbose_name="Порода")),
+                (
+                    "hairiness",
+                    models.CharField(
+                        choices=[
+                            ("bald", "Лысый"),
+                            ("medium", "Средний"),
+                            ("fluffy", "Пушистый"),
+                        ],
+                        default="medium",
+                        max_length=50,
+                        verbose_name="Волосатость",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Дата добавления"
+                    ),
+                ),
+                (
+                    "owner",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="cats",
+                        to=settings.AUTH_USER_MODEL,
+                        verbose_name="Заводчик",
+                    ),
+                ),
             ],
         ),
     ]
