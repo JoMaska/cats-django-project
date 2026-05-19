@@ -59,7 +59,7 @@ REST_FRAMEWORK = {
     ),
 }
 
-ROOT_URLCONF = "backend.urls"
+ROOT_URLCONF = "app.urls"
 
 TEMPLATES = [
     {
@@ -76,8 +76,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "backend.wsgi.application"
-ASGI_APPLICATION = "backend.asgi.application"
+WSGI_APPLICATION = "app.wsgi.application"
+ASGI_APPLICATION = "app.asgi.application"
 
 
 # Database
