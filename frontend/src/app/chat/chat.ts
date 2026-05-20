@@ -53,7 +53,8 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   private connectWebSocket(): void {
-    const wsUrl = 'ws://localhost:8000/ws/chat/';
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    const wsUrl = `${protocol}//${window.location.host}/ws/chat/`;
 
     this.socket = new WebSocket(wsUrl);
     
