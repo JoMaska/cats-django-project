@@ -4,23 +4,24 @@
   margin: 0 auto;
 }
 
-mat-card-header {
+.header-content {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 24px 0 24px;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
-mat-card-title {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+.cats-title {
   font-size: 24px;
   font-weight: 500;
+  margin: 0;
 }
 
 .add-button {
-  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .cats-table {

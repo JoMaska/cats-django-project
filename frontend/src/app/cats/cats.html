@@ -1,18 +1,13 @@
 <div class="cats-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>
-        <mat-icon>pets</mat-icon>
-        Мои коты
-      </mat-card-title>
-      <button 
-        mat-raised-button 
-        color="primary" 
-        (click)="openForm()"
-        class="add-button">
-        <mat-icon>add</mat-icon>
-        Добавить кота
-      </button>
+      <div class="header-content">
+        <mat-card-title class="cats-title">Управление питомцами</mat-card-title>
+        <button mat-raised-button color="primary" (click)="openForm()" class="add-button">
+          <mat-icon>add</mat-icon>
+          Добавить кота
+        </button>
+      </div>
     </mat-card-header>
     
     <mat-card-content>

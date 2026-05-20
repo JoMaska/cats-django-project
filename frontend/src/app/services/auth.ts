@@ -18,12 +18,14 @@ export class AuthService {
     return this.http.post(`${this.api}/token/`, { username, password }).pipe(
       tap((res: any) => {
         localStorage.setItem(this.tokenKey, res.access);
+        localStorage.setItem('username', username);
       })
     );
   }
 
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem('username');
   }
 
   getToken(): string | null {
@@ -32,5 +34,32 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  getUserId(): number | null {
+    const token = this.getToken();
+    if (!token) return null;
+    
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.user_id;
+    } catch {
+      return null;
+    }
+  }
+
+  getUsername(): string | null {
+    const stored = localStorage.getItem('username');
+    if (stored) return stored;
+    
+    const token = this.getToken();
+    if (!token) return null;
+    
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      return payload.username || null;
+    } catch {
+      return null;
+    }
   }
 }

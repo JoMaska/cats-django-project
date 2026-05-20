@@ -20,7 +20,7 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from cats.views import CatViewSet, RegisterViewSet
-
+from cats.views import ChatMessageViewSet
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
@@ -38,6 +38,7 @@ schema_view = get_schema_view(
 router = DefaultRouter()
 router.register(r"cats", CatViewSet, basename="cat")
 router.register(r"register", RegisterViewSet, basename="register")
+router.register(r"messages", ChatMessageViewSet, basename="messages")
 
 urlpatterns = [
     path(

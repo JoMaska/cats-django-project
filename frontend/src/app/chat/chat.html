@@ -1,6 +1,35 @@
-<mat-card>
-  <mat-card-title>Чат заводчиков</mat-card-title>
+<mat-card class="chat-card">
+  <mat-card-header>
+    <mat-card-title class="chat-title">Чат с заводчиками</mat-card-title>
+  </mat-card-header>
+  
   <mat-card-content>
-    <p>Чат будет здесь</p>
+    <div class="messages-container" #messagesContainer>
+      <div *ngFor="let msg of messages" 
+           class="message"
+           [class.own-message]="isOwnMessage(msg.username)"
+           [class.other-message]="!isOwnMessage(msg.username)">
+        <div class="message-header">
+          <strong>{{ msg.username }}</strong>
+          <span class="message-time">{{ msg.created_at | date:'HH:mm' }}</span>
+        </div>
+        <div class="message-body">{{ msg.message }}</div>
+      </div>
+    </div>
+    
+    <div class="input-area">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Сообщение...</mat-label>
+        <input matInput [(ngModel)]="newMessage" 
+               (keyup.enter)="sendMessage()"
+               placeholder="Напишите сообщение...">
+      </mat-form-field>
+      <button mat-raised-button color="primary" 
+              (click)="sendMessage()"
+              [disabled]="!newMessage.trim()">
+        <mat-icon>send</mat-icon>
+        Отправить
+      </button>
+    </div>
   </mat-card-content>
 </mat-card>
