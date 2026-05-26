@@ -14,6 +14,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppRoutingModule } from './app-routing-module';
 import { AppComponent } from './app';
@@ -27,6 +29,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth';
 import { PluralPipe } from './pipes/plural-pipe';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { PublicCatsComponent } from './public-cats/public-cats';
+import { ProfileComponent } from './profile/profile';
 
 @NgModule({
   declarations: [
@@ -37,6 +41,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ChatComponent,
     CatFormComponent,
     PluralPipe,
+    PublicCatsComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +60,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatDialogModule,
     MatSelectModule,
     MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatGridListModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent],

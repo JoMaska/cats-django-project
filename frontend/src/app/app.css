@@ -2,8 +2,11 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 0 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -24,43 +27,47 @@
   letter-spacing: 0.5px;
 }
 
-.spacer {
-  flex: 1 1 auto;
-}
-
-.nav-links {
+.nav-center {
   display: flex;
   align-items: center;
   gap: 4px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.nav-links a,
-.nav-links button {
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.nav-center a,
+.nav-right a,
+.nav-right button {
   display: flex;
   align-items: center;
   gap: 6px;
   transition: all 0.2s ease;
+  border-radius: 8px;
 }
 
-.nav-links a:hover,
-.nav-links button:hover {
+.nav-center a:hover,
+.nav-right a:hover,
+.nav-right button:hover {
   background-color: rgba(255, 255, 255, 0.1);
   transform: translateY(-1px);
 }
 
-.nav-links a.active {
+.nav-center a.active,
+.nav-right a.active {
   background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
 }
 
 .register-btn {
   background-color: rgba(255, 255, 255, 0.15);
   border-radius: 20px !important;
-  margin-left: 8px;
-}
-
-.logout-btn {
-  margin-left: 8px;
 }
 
 .mobile-menu-btn {
@@ -103,6 +110,13 @@
   background-color: rgba(156, 39, 176, 0.08);
 }
 
+.mobile-divider {
+  margin: 12px 16px;
+  border: none;
+  height: 1px;
+  background: #e0e0e0;
+}
+
 .main-content {
   min-height: calc(100vh - 64px);
   background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
@@ -131,11 +145,8 @@
     padding: 0 16px;
   }
   
-  .logo-text {
-    display: inline;
-  }
-  
-  .nav-links {
+  .nav-center,
+  .nav-right {
     display: none;
   }
   
@@ -150,7 +161,6 @@
 
 @media (max-width: 480px) {
   .logo-text {
-    display: inline;
     font-size: 1rem;
   }
   

@@ -1,0 +1,225 @@
+.public-cats-container {
+  padding: 24px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filters-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 32px;
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.filters-row mat-form-field {
+  flex: 1;
+  min-width: 180px;
+}
+
+.cats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.cat-card {
+  border-radius: 20px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  position: relative;
+}
+
+.cat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+}
+
+.cat-image {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+  text-align: center;
+}
+
+.cat-avatar {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: white;
+  filter: drop-shadow(2px 4px 8px rgba(0, 0, 0, 0.2));
+}
+
+mat-card-header {
+  padding: 16px 16px 0 16px;
+  margin-bottom: 0;
+}
+
+mat-card-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.breed-badge {
+  background: #f0f0f0;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #666;
+  display: inline-block;
+}
+
+mat-card-content {
+  padding: 0 16px 8px 16px;
+}
+
+.cat-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 12px 0;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.detail-item mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #9c27b0;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px 16px 16px;
+  margin-top: auto;
+  border-top: 1px solid #f0f0f0;
+}
+
+.like-button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 30px;
+  transition: background 0.2s;
+}
+
+.like-button:hover {
+  background: rgba(244, 67, 54, 0.08);
+}
+
+.like-button mat-icon {
+  font-size: 22px;
+  transition: transform 0.2s;
+}
+
+.like-button:active mat-icon {
+  transform: scale(1.2);
+}
+
+.likes-count {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 2px;
+}
+
+.likes-label {
+  font-size: 12px;
+  color: #999;
+  margin-left: 2px;
+}
+
+.created-date {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #999;
+}
+
+.created-date mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  background: white;
+  border-radius: 24px;
+  margin-top: 40px;
+}
+
+.empty-state mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #ccc;
+  margin-bottom: 16px;
+}
+
+.empty-state p {
+  font-size: 18px;
+  color: #666;
+  margin: 8px 0;
+}
+
+.empty-hint {
+  font-size: 14px;
+  color: #999;
+}
+
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+}
+
+@media (max-width: 768px) {
+  .public-cats-container {
+    padding: 16px;
+  }
+  
+  .filters-row {
+    flex-direction: column;
+    padding: 16px;
+  }
+  
+  .cats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  mat-card-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .created-date {
+    align-self: flex-end;
+  }
+}

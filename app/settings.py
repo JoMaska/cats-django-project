@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "channels",
     "drf_yasg",
-    "cats",
+    "cats.apps.CatsConfig",
 ]
 
 MIDDLEWARE = [

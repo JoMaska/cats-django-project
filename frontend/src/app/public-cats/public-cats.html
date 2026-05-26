@@ -1,0 +1,95 @@
+<div class="public-cats-container">
+  <h2>Все коты заводчиков</h2>
+  
+  <div class="filters-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Волосатость</mat-label>
+      <mat-select [(ngModel)]="filters.hairiness" (selectionChange)="onFilterChange()">
+        <mat-option value="">Все</mat-option>
+        <mat-option value="bald">Лысые</mat-option>
+        <mat-option value="fluffy">Пушистые</mat-option>
+        <mat-option value="medium">Средние</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Сортировка</mat-label>
+      <mat-select [(ngModel)]="filters.ordering" (selectionChange)="onFilterChange()">
+        <mat-option value="-created_at">Новые сначала</mat-option>
+        <mat-option value="name">По имени (А-Я)</mat-option>
+        <mat-option value="-likes_count">По популярности</mat-option>
+        <mat-option value="age">По возрасту</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Владелец</mat-label>
+      <input matInput [(ngModel)]="filters.owner" (input)="onSearchInput()" placeholder="Имя заводчика">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Поиск по имени</mat-label>
+      <input matInput [(ngModel)]="filters.search" (input)="onSearchInput()" placeholder="Например: Барсик">
+    </mat-form-field>
+  </div>
+  
+  <div class="cats-grid" *ngIf="!loading">
+    <mat-card *ngFor="let cat of cats" class="cat-card">
+      <div class="cat-image">
+        <mat-icon class="cat-avatar">pets</mat-icon>
+      </div>
+      
+      <mat-card-header>
+        <mat-card-title>{{ cat.name }}</mat-card-title>
+        <mat-card-subtitle>
+          <span class="breed-badge">{{ cat.breed_name || 'Порода не указана' }}</span>
+        </mat-card-subtitle>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <div class="cat-details">
+          <div class="detail-item">
+            <mat-icon>cake</mat-icon>
+            <span>{{ cat.age }} {{ cat.age | plural:'год' }}</span>
+          </div>
+          <div class="detail-item">
+            <mat-icon *ngIf="cat.hairiness === 'bald'">spa</mat-icon>
+            <mat-icon *ngIf="cat.hairiness === 'fluffy'">cloud_queue</mat-icon>
+            <mat-icon *ngIf="cat.hairiness === 'medium'">grass</mat-icon>
+            <span>
+              <span *ngIf="cat.hairiness === 'bald'">Лысый</span>
+              <span *ngIf="cat.hairiness === 'fluffy'">Пушистый</span>
+              <span *ngIf="cat.hairiness === 'medium'">Средний</span>
+            </span>
+          </div>
+          <div class="detail-item">
+            <mat-icon>person</mat-icon>
+            <span>{{ cat.owner_username || 'Неизвестен' }}</span>
+          </div>
+        </div>
+      </mat-card-content>
+      
+      <mat-card-actions>
+        <div class="like-button" (click)="toggleLike(cat)">
+          <mat-icon [color]="cat.is_liked ? 'warn' : 'basic'">favorite</mat-icon>
+          <span class="likes-count">{{ cat.likes_count || 0 }}</span>
+          <span class="likes-label">лайков</span>
+        </div>
+        <div class="created-date">
+          <mat-icon>schedule</mat-icon>
+          <span>{{ cat.created_at | date:'dd.MM.yyyy' }}</span>
+        </div>
+      </mat-card-actions>
+    </mat-card>
+    
+    <div *ngIf="cats.length === 0" class="empty-state">
+      <mat-icon>sentiment_dissatisfied</mat-icon>
+      <p>Нет котов, соответствующих фильтрам</p>
+      <p class="empty-hint">Попробуйте изменить параметры поиска</p>
+    </div>
+  </div>
+  
+  <div class="loading-spinner" *ngIf="loading">
+    <mat-spinner diameter="50"></mat-spinner>
+  </div>
+</div>

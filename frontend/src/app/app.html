@@ -1,19 +1,28 @@
 <mat-toolbar color="primary" class="navbar">
   <div class="logo">
     <mat-icon>pets</mat-icon>
-    <span class="logo-text">Cat Breeder</span>
+    <span class="logo-text">Котовод</span>
   </div>
   
-  <span class="spacer"></span>
-  
-  <div class="nav-links" *ngIf="isLoggedIn">
+  <div class="nav-center" *ngIf="isLoggedIn">
     <a mat-button routerLink="/cats" routerLinkActive="active">
       <mat-icon>pets</mat-icon>
       <span>Мои коты</span>
     </a>
+    <a mat-button routerLink="/public-cats" routerLinkActive="active">
+      <mat-icon>public</mat-icon>
+      <span>Все коты</span>
+    </a>
     <a mat-button routerLink="/chat" routerLinkActive="active">
       <mat-icon>chat</mat-icon>
       <span>Чат</span>
+    </a>
+  </div>
+  
+  <div class="nav-right" *ngIf="isLoggedIn">
+    <a mat-button routerLink="/profile" routerLinkActive="active">
+      <mat-icon>account_circle</mat-icon>
+      <span>Профиль</span>
     </a>
     <button mat-button (click)="logout()" class="logout-btn">
       <mat-icon>exit_to_app</mat-icon>
@@ -21,7 +30,7 @@
     </button>
   </div>
   
-  <div class="nav-links" *ngIf="!isLoggedIn">
+  <div class="nav-right" *ngIf="!isLoggedIn">
     <a mat-button routerLink="/login" routerLinkActive="active">
       <mat-icon>login</mat-icon>
       <span>Войти</span>
@@ -37,15 +46,23 @@
   </button>
 </mat-toolbar>
 
-
 <div class="mobile-menu" [class.open]="mobileMenuOpen" *ngIf="isLoggedIn">
   <a mat-button routerLink="/cats" (click)="closeMobileMenu()">
     <mat-icon>pets</mat-icon>
     Мои коты
   </a>
+  <a mat-button routerLink="/public-cats" (click)="closeMobileMenu()">
+    <mat-icon>public</mat-icon>
+    Все коты
+  </a>
   <a mat-button routerLink="/chat" (click)="closeMobileMenu()">
     <mat-icon>chat</mat-icon>
     Чат
+  </a>
+  <hr class="mobile-divider">
+  <a mat-button routerLink="/profile" (click)="closeMobileMenu()">
+    <mat-icon>account_circle</mat-icon>
+    Профиль
   </a>
   <button mat-button (click)="logout(); closeMobileMenu()">
     <mat-icon>exit_to_app</mat-icon>

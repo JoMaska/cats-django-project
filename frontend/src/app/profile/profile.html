@@ -1,0 +1,91 @@
+<div class="profile-container">
+  <mat-card class="profile-card">
+    <mat-card-header>
+      <div class="profile-header">
+        <div class="avatar-placeholder">
+          <mat-icon class="avatar-icon">account_circle</mat-icon>
+        </div>
+        <div class="profile-title">
+          <mat-card-title>{{ profile?.username }}</mat-card-title>
+        </div>
+      </div>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <div *ngIf="loading" class="loading">
+        <mat-spinner diameter="40"></mat-spinner>
+      </div>
+      
+      <div *ngIf="!loading && profile">
+        <div *ngIf="!editMode" class="view-mode">
+          <div class="info-row">
+            <mat-icon>email</mat-icon>
+            <div>
+              <strong>Email</strong>
+              <p>{{ profile.email || 'Не указан' }}</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <mat-icon>info</mat-icon>
+            <div>
+              <strong>О себе</strong>
+              <p>{{ profile.bio || 'Не указано' }}</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <mat-icon>language</mat-icon>
+            <div>
+              <strong>Сайт</strong>
+              <p *ngIf="profile.website">
+                <a [href]="profile.website" target="_blank">{{ profile.website }}</a>
+              </p>
+              <p *ngIf="!profile.website">Не указан</p>
+            </div>
+          </div>
+          <div class="info-row">
+            <mat-icon>place</mat-icon>
+            <div>
+              <strong>Город</strong>
+              <p>{{ profile.location || 'Не указан' }}</p>
+            </div>
+          </div>
+          
+          <button mat-raised-button color="primary" (click)="enableEdit()" class="edit-btn">
+            <mat-icon>edit</mat-icon>
+            Редактировать
+          </button>
+        </div>
+        
+        <div *ngIf="editMode" class="edit-mode">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" [(ngModel)]="editData.email" placeholder="example@mail.com">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>О себе</mat-label>
+            <textarea matInput rows="4" [(ngModel)]="editData.bio" placeholder="Расскажите о себе..."></textarea>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Сайт</mat-label>
+            <input matInput [(ngModel)]="editData.website" placeholder="https://...">
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Город</mat-label>
+            <input matInput [(ngModel)]="editData.location" placeholder="Ваш город">
+          </mat-form-field>
+          
+          <div class="actions">
+            <button mat-button (click)="cancelEdit()">Отмена</button>
+            <button mat-raised-button color="primary" (click)="saveProfile()" [disabled]="saving">
+              <mat-icon>save</mat-icon>
+              Сохранить
+            </button>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
